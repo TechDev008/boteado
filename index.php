@@ -40,17 +40,11 @@ sendMessage($website, $chat_id, "<b>Bienvenido</b>
 
 if (strpos($text, "/upload ") !== false) {
 $url = str_replace("/upload ", "", $text);
-  sendMessage($website, $chat_id, "✅URL RECONOCIDA✅");
-  if (file_get_contents($url) !== false) {
     $size = urlsize($url) / 1048576;
     editmsg($website, $chat_id, $msg_id + 1, "⏫SUBIENDO⏫
   ".$size." MB");
     
     download($website, $chat_id, $msg_id + 1, $url);
-    
-  } else {
- sendMessage($website, $chat_id, "🛑URL NO VALIDA🛑");
-  }
 } else {
 if (strpos($text, "/upload") !== false) {
 sendMessage($website, $chat_id, "🛑 ERROR DEL FORMATO DEL COMANDO 🛑");
